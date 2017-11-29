@@ -1,6 +1,6 @@
 module Themes::SopharyCmsDefault::MainHelper
   def self.included(klass)
-    # klass.helper_method [:my_helper_method] rescue "" # here your methods accessible from views
+    klass.helper_method [:mycms_get_nav_menu] rescue "" # here your methods accessible from views
   end
 
   def sophary_cms_default_settings(theme)
@@ -19,6 +19,24 @@ module Themes::SopharyCmsDefault::MainHelper
 
     # # Sample Meta Value
     # theme.set_meta("installed_at", Time.current.to_s) # save a custom value
+  end
+
+  def mycms_get_nav_menu(key = 'main_menu', class_name = "navigation")
+    option = {
+      menu_slug: key,
+      container_class: class_name,
+      container_id: 'main-menu-ul',
+      item_class_parent: 'dropdown',
+      sub_class:        'dropdown-menu submenu-dropdown',
+      callback_item: lambda do |args|
+        args[:link_attrs] = "data-title='#{args[:link][:name].parameterize}'"
+        if args[:has_children]
+          args[:settings][:after] = "<span class='dropdown-icon'><i class='fa fa-angle-down' aria-hidden='true'></i></span>"
+          args[:link_attrs] += "data-toggle='dropdown'"
+        end
+      end
+    }
+    draw_menu(option)
   end
 
   # callback executed after theme uninstalled

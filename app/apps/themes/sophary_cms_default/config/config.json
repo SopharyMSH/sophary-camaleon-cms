@@ -3,7 +3,8 @@
   "description" : "",
   "thumb" : "images/image.png",
   "helpers": [
-    "Themes::SopharyCmsDefault::MainHelper"
+    "Themes::SopharyCmsDefault::MainHelper",
+    "Themes::SopharyCmsDefault::LanguageHelper"
   ],
   "hooks": {
     "on_active": ["sophary_cms_default_on_install_theme"],
