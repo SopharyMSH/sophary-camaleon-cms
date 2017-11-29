@@ -1,0 +1,14 @@
+{
+  "name" : "Sophary Cms Default",
+  "description" : "",
+  "thumb" : "images/image.png",
+  "helpers": [
+    "Themes::SopharyCmsDefault::MainHelper"
+  ],
+  "hooks": {
+    "on_active": ["sophary_cms_default_on_install_theme"],
+    "on_inactive": ["sophary_cms_default_on_uninstall_theme"],
+    "on_theme_settings": ["sophary_cms_default_settings"]
+    //here all your hooks
+  }
+}
