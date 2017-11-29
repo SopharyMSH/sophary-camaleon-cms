@@ -21,3 +21,9 @@
 /yarn-error.log
 
 .byebug_history
+.DS_Store
+app/.DS_Store
+app/apps/.DS_Store
+app/apps/themes/.DS_Store
+app/apps/themes/sophary_cms_default/.DS_Store
+app/apps/themes/sophary_cms_default/assets/.DS_Store
