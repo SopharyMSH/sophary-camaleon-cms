@@ -13,6 +13,7 @@ module Themes::SopharyCmsDefault::MainHelper
     mycms_add_fields_to_contact_page
     mycms_add_faqs_post_type
     mycms_add_fields_to_faq_post_type
+    mycms_add_customize_theme_setting(theme)
   end
 
   def mycms_add_default_pages
@@ -68,6 +69,22 @@ module Themes::SopharyCmsDefault::MainHelper
       faqs_field_group.add_field({ name: 'Text Area Field', slug: 'text-area-field' }, { field_key: 'text_area', required: true } )
       faqs_field_group.add_field({ name: 'Editor Field', slug: 'editor-field' }, { field_key: 'editor', required: true } )
       faqs_field_group.add_field({ name: 'Image Field', slug: 'image-field' }, { field_key: 'image', required: true } )
+    end
+  end
+
+  def mycms_add_customize_theme_setting(theme)
+    if theme.get_field_groups.where(slug: 'google-analytic').blank?
+      group = theme.add_field_group({ name: 'Google Analytic', slug: 'google-analytic' })
+
+      group.add_field({ name: 'Google analytics Tracking Id', slug: 'google-analytics-tracking-id' },     { field_key: 'text_box', default_value: 'uv0992434' })
+    end
+    if theme.get_field_groups.where(slug: 'social-media').blank?
+      group = theme.add_field_group({ name: 'Social Media', slug: 'social-media' })
+
+      group.add_field({ name: 'Facebook Url',   slug: 'facebook-url' },   { field_key: 'url', default_value: 'https://www.facebook.com/' })
+      group.add_field({ name: 'Twitter Url',    slug: 'twitter-url' },    { field_key: 'url' , default_value: 'https://twitter.com/?lang=en'})
+      group.add_field({ name: 'Tumblr Url',     slug: 'tumblr-url' },     { field_key: 'url', default_value: 'https://www.tumblr.com/' })
+      group.add_field({ name: 'Youtube Url',    slug: 'youtube-url' },    { field_key: 'url', default_value: 'https://www.youtube.com/' })
     end
   end
 
