@@ -1,0 +1,30 @@
+.container
+  .row
+    .col-xs-12
+      %h1
+        Hello! This is Faq Post Type
+      %p
+        To use the post type page, you need to create one folder named "post_types".
+        and create the file name exactly as your post type name.
+        and write code below to get all items from faq post type.
+
+  - faqs = current_site.the_post_type('faqs').the_posts.visible_frontend.decorate
+  .row
+    .col-xs-12
+      .faq-block.white-text-link
+        - faqs.each_slice(4).with_index do |row, i|
+          .row
+            - row.each_with_index do |faq, index|
+              = link_to "#faq-#{i}-#{index}", class: 'faq-btn' do 
+                .col-xs-12.col-sm-6.col-md-3.text-center
+                  .faq-title
+                    = faq.the_title
+          %hr/
+  .col-xs-12
+    - faqs.each_slice(4).with_index do |row, i|
+      - row.each_with_index do |faq, index|
+        .faq-detail-block
+          %h1.title{id: "faq-#{i}-#{index}"}
+            = faq.the_title
+          .content
+            = raw faq.the_content
