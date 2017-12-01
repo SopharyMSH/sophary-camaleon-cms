@@ -10,6 +10,7 @@ module Themes::SopharyCmsDefault::MainHelper
   # callback called after theme installed
   def sophary_cms_default_on_install_theme(theme)
     mycms_add_default_pages
+    mycms_add_fields_to_contact_page
   end
 
   def mycms_add_default_pages
@@ -24,6 +25,17 @@ module Themes::SopharyCmsDefault::MainHelper
           page_post_type.add_post(title: page, content: 'lorem_ipsum')
         end
       end
+    end
+  end
+
+   def mycms_add_fields_to_contact_page
+    page = current_site.the_post_type('page').the_post('contact')
+    if page.get_field_groups.where(slug: 'contact-fileds').blank?
+      file_field_group = page.add_field_group({ name: 'Contact Fileds', slug: 'contact-fileds' }, 'Post')
+      file_field_group.add_field({ name: 'Contact Mail', slug: 'contact-mail' }, { field_key: 'text_box', required: true, default_value: 'info@companyname.com'})
+      file_field_group.add_field({ name: 'Phones', slug: 'phones' }, { field_key: 'text_box', required: true, multiple: true, default_value: '070-xxxx-xxxx'})
+      file_field_group.add_field({ name: 'Address', slug: 'address' }, { field_key: 'editor', required: true, default_value: 'Lorem Ipsum dolor sit amet, consectetur adipiscing elit.' })
+      file_field_group.add_field({ name: 'Embed Map Url', slug: 'embed-map-url' }, { field_key: 'url', required: true, default_value: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d250151.15120764848!2d104.75010047461711!3d11.579666934905125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3109513dc76a6be3%3A0x9c010ee85ab525bb!2sPhnom+Penh!5e0!3m2!1sen!2skh!4v1507699269146' })
     end
   end
 
