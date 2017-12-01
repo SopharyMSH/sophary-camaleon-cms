@@ -12,6 +12,7 @@ module Themes::SopharyCmsDefault::MainHelper
     mycms_add_default_pages
     mycms_add_fields_to_contact_page
     mycms_add_faqs_post_type
+    mycms_add_fields_to_faq_post_type
   end
 
   def mycms_add_default_pages
@@ -55,6 +56,18 @@ module Themes::SopharyCmsDefault::MainHelper
         contents_route_format: 'post_of_posttype'
       }
       faqs.set_meta('_default', options)
+    end
+  end
+
+  def mycms_add_fields_to_faq_post_type
+    faqs = current_site.the_post_type('faqs')
+    if faqs.get_field_groups.where(slug: 'faqs-fields').blank?
+      faqs_field_group = faqs.add_field_group({ name: 'faqs Fields', slug: 'faqs-fields' } )
+
+      faqs_field_group.add_field({ name: 'Text Box Field', slug: 'text-box-field' }, { field_key: 'text_box', required: true } )
+      faqs_field_group.add_field({ name: 'Text Area Field', slug: 'text-area-field' }, { field_key: 'text_area', required: true } )
+      faqs_field_group.add_field({ name: 'Editor Field', slug: 'editor-field' }, { field_key: 'editor', required: true } )
+      faqs_field_group.add_field({ name: 'Image Field', slug: 'image-field' }, { field_key: 'image', required: true } )
     end
   end
 
