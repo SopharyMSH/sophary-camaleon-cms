@@ -27,3 +27,4 @@ app/apps/.DS_Store
 app/apps/themes/.DS_Store
 app/apps/themes/sophary_cms_default/.DS_Store
 app/apps/themes/sophary_cms_default/assets/.DS_Store
+public/media/

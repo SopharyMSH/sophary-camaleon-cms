@@ -1,0 +1,10 @@
+.container
+  .row
+    .instruction
+      %h4 To custome the show page of post type, you have to create a file inside view folder and named it exactly the same your post type slug.
+    .col-xs-12
+      %h1
+        = @post.the_title
+    .col-xs-12
+      %p
+        = raw @post.the_content

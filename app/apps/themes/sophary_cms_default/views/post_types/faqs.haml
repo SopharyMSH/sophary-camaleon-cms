@@ -9,22 +9,25 @@
         and write code below to get all items from faq post type.
 
   - faqs = current_site.the_post_type('faqs').the_posts.visible_frontend.decorate
-  .row
-    .col-xs-12
-      .faq-block.white-text-link
-        - faqs.each_slice(4).with_index do |row, i|
-          .row
-            - row.each_with_index do |faq, index|
-              = link_to "#faq-#{i}-#{index}", class: 'faq-btn' do 
-                .col-xs-12.col-sm-6.col-md-3.text-center
-                  .faq-title
-                    = faq.the_title
-          %hr/
-  .col-xs-12
-    - faqs.each_slice(4).with_index do |row, i|
-      - row.each_with_index do |faq, index|
-        .faq-detail-block
-          %h1.title{id: "faq-#{i}-#{index}"}
-            = faq.the_title
-          .content
-            = raw faq.the_content
+  - faqs.each do |faq|
+    %h1
+      = link_to faq.the_title, faq.the_url
+  -# .row
+  -#   .col-xs-12
+  -#     .faq-block.white-text-link
+  -#       - faqs.each_slice(4).with_index do |row, i|
+  -#         .row
+  -#           - row.each_with_index do |faq, index|
+  -#             = link_to "#faq-#{i}-#{index}", class: 'faq-btn' do 
+  -#               .col-xs-12.col-sm-6.col-md-3.text-center
+  -#                 .faq-title
+  -#                   = faq.the_title
+  -#         %hr/
+  -# .col-xs-12
+  -#   - faqs.each_slice(4).with_index do |row, i|
+  -#     - row.each_with_index do |faq, index|
+  -#       .faq-detail-block
+  -#         %h1.title{id: "faq-#{i}-#{index}"}
+  -#           = faq.the_title
+  -#         .content
+  -#           = raw faq.the_content
