@@ -9,16 +9,22 @@ module Themes::SopharyCmsDefault::MainHelper
 
   # callback called after theme installed
   def sophary_cms_default_on_install_theme(theme)
-    # # Sample Custom Field
-    # unless theme.get_field_groups.where(slug: "fields").any?
-    #   group = theme.add_field_group({name: "Main Settings", slug: "fields", description: ""})
-    #   group.add_field({"name"=>"Background color", "slug"=>"bg_color"},{field_key: "colorpicker"})
-    #   group.add_field({"name"=>"Links color", "slug"=>"links_color"},{field_key: "colorpicker"})
-    #   group.add_field({"name"=>"Background image", "slug"=>"bg"},{field_key: "image"})
-    # end
+    mycms_add_default_pages
+  end
 
-    # # Sample Meta Value
-    # theme.set_meta("installed_at", Time.current.to_s) # save a custom value
+  def mycms_add_default_pages
+    page_post_type = current_site.the_post_type('page')
+    if page_post_type.present?
+      pages = ['Home','About','Contact','FAQ']
+
+      pages.each do |page|
+        formatted_page = page.downcase.parameterize
+        exist_page = current_site.the_post_type('page').the_posts.where("slug like '%#{formatted_page}%'")
+        unless exist_page.present?
+          page_post_type.add_post(title: page, content: 'lorem_ipsum')
+        end
+      end
+    end
   end
 
   def mycms_get_nav_menu(key = 'main_menu', class_name = "navigation")
