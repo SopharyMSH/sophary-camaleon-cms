@@ -1,15 +1,15 @@
-# README
+# # README
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-#Camaleon CMS (It adapts to your needs) 
+## #Camaleon CMS (It adapts to your needs) 
 
   *source: https://github.com/owen2345/camaleon-cms
 
   - Camaleon CMS is a dynamic and advanced content management system based on Ruby on Rails 4+ and Ruby 1.9.3+. This CMS is an alternative to wordpress for Ruby on Rails developers to manage advanced contents easily. Camaleon CMS is a flexible manager where you can build your custom content structure without coding anything by custom fields and custom contents type.
 
-#With Camaleon you can do:
+## #With Camaleon you can do:
 
   - Multiples sites in the same installation
   - Multilanguage sites
@@ -25,7 +25,7 @@ application up and running.
   - Templates/Layouts for pages
   - Easy migration from wordpress
 
-#Some features are:
+## #Some features are:
 
   - Integrate into existent Ruby on Rails Projects
   - Easy administration Camaleon CMS permit you to adapt the CMS to all your needs and not you adapt to the CMS. I.E. you can create your custom architecture with all attributes that you need for each kind of content.
@@ -36,7 +36,7 @@ application up and running.
   - Cross Site Scripting
   - Control of abusive requests
   - Cross-Site Request Forgery
-  **Site Speed Camaleon CMS include a lot of cache strategies to optimize the site access velocity:
+  ###Site Speed Camaleon CMS include a lot of cache strategies to optimize the site access velocity:
   - Cache contents
   - Cache queries
   - Manifests (compress and join asset files)
@@ -47,20 +47,24 @@ application up and running.
   - Seo for social media
   - All generated content is compatible with HTML5 and bootstrap 3
 
-#Noted Project Step
-  *Create your rails project
+## #Noted Project Step
+  * Create your rails project
     - rails new sophary-camaleon-cms
-  *Add the gem in your Gemfile 
+  * Add the gem in your Gemfile 
     - gem "camaleon_cms",  '>= 2.4.4.5'
     - gem 'draper', '~> 3'
-  *Install required Gem and dependencies
+  * Install required Gem and dependencies
     - bundle install
-  *Camaleon CMS Installation
+  * Camaleon CMS Installation
     - rails generate camaleon_cms:install
-  *Create database structure
+  * Create database structure
     - rake camaleon_cms:generate_migrations
     - rake db:migrate
-  *Start your server
+  * Start your server
     - rails server # and then go to your browser http://localhost:3000/
-  *Install New theme
+  * Install New theme
     - rails g camaleon_cms:theme sophary-cms-default
+## #Noted
+  - Create Page use "template_pageName"
+  - Customize Post Type for display all item -> create "post_types" folder in view folder and create file name exactly the same post type slug
+  - Customize Post Type show page to display each item -> create file in View folder named it exactly the same post type slug
